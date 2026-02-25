@@ -60,6 +60,73 @@ const plans = [
   },
 ];
 
+function PlanCard({ plan, index }: { plan: (typeof plans)[0]; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className={`relative rounded-2xl border p-7 flex flex-col gap-6 ${
+        plan.highlighted
+          ? "bg-violet-950/40 border-violet-600/50 shadow-[0_0_40px_rgba(124,58,237,0.15)]"
+          : "bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.08)]"
+      }`}
+    >
+      {plan.badge && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span className="px-3 py-1 bg-violet-600 text-white text-xs font-semibold rounded-full shadow-lg">
+            {plan.badge}
+          </span>
+        </div>
+      )}
+
+      <div>
+        <h3 className="text-white font-semibold text-xl mb-1">{plan.name}</h3>
+        <p className="text-gray-500 text-sm">{plan.description}</p>
+      </div>
+
+      <div>
+        <span className="text-4xl font-bold text-white">{plan.price}</span>
+        {plan.period && (
+          <span className="text-gray-400 text-sm">{plan.period}</span>
+        )}
+      </div>
+
+      <ul className="flex flex-col gap-3">
+        {plan.features.map((feature) => (
+          <li key={feature} className="flex items-center gap-2.5 text-sm text-gray-300">
+            <svg
+              className={`w-4 h-4 shrink-0 ${plan.highlighted ? "text-violet-400" : "text-gray-500"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        href={plan.href}
+        className={`mt-auto w-full py-3 rounded-xl font-semibold text-sm text-center transition-all duration-200 ${
+          plan.highlighted
+            ? "bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-600/20"
+            : "border border-white/10 text-white hover:bg-white/5"
+        }`}
+      >
+        {plan.cta}
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function Pricing() {
   const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
@@ -93,73 +160,9 @@ export default function Pricing() {
 
         {/* Plans */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          {plans.map((plan, i) => {
-            const cardRef = useRef<HTMLDivElement>(null);
-            const inView = useInView(cardRef, { once: true, margin: "-60px" });
-
-            return (
-              <motion.div
-                key={plan.name}
-                ref={cardRef}
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`relative rounded-2xl border p-7 flex flex-col gap-6 ${
-                  plan.highlighted
-                    ? "bg-violet-950/40 border-violet-600/50 shadow-[0_0_40px_rgba(124,58,237,0.15)]"
-                    : "bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.08)]"
-                }`}
-              >
-                {plan.badge && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 bg-violet-600 text-white text-xs font-semibold rounded-full shadow-lg">
-                      {plan.badge}
-                    </span>
-                  </div>
-                )}
-
-                <div>
-                  <h3 className="text-white font-semibold text-xl mb-1">{plan.name}</h3>
-                  <p className="text-gray-500 text-sm">{plan.description}</p>
-                </div>
-
-                <div>
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  {plan.period && (
-                    <span className="text-gray-400 text-sm">{plan.period}</span>
-                  )}
-                </div>
-
-                <ul className="flex flex-col gap-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2.5 text-sm text-gray-300">
-                      <svg
-                        className={`w-4 h-4 shrink-0 ${plan.highlighted ? "text-violet-400" : "text-gray-500"}`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={plan.href}
-                  className={`mt-auto w-full py-3 rounded-xl font-semibold text-sm text-center transition-all duration-200 ${
-                    plan.highlighted
-                      ? "bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-600/20"
-                      : "border border-white/10 text-white hover:bg-white/5"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </motion.div>
-            );
-          })}
+          {plans.map((plan, i) => (
+            <PlanCard key={plan.name} plan={plan} index={i} />
+          ))}
         </div>
       </div>
     </section>
