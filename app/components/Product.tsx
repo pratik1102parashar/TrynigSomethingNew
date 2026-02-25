@@ -118,7 +118,7 @@ export default function Product() {
           </h2>
           <p className="text-gray-400 text-lg">
             Whether you&apos;re building consumer apps or enterprise workflows,
-            Antimatter AI adapts to your needs.
+            Nexus AI adapts to your needs.
           </p>
         </motion.div>
 

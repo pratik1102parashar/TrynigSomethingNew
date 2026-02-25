@@ -1,6 +1,6 @@
-# Antimatter AI — Website Rebuild
+# Nexus AI — Website
 
-A faithful rebuild of [antimatterai.com](https://www.antimatterai.com/) implemented with **Next.js 15 (App Router)** and **Tailwind CSS 4**, featuring rich scroll-based and entrance animations.
+A modern AI platform landing page built with **Next.js 15 (App Router)** and **Tailwind CSS 4**, featuring rich scroll-based and entrance animations.
 
 ## Tech Stack
 

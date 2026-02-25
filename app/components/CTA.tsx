@@ -47,7 +47,7 @@ export default function CTA() {
             >
               Ready to build with
               <br />
-              <span className="gradient-text">Antimatter AI?</span>
+              <span className="gradient-text">Nexus AI?</span>
             </motion.h2>
 
             <motion.p

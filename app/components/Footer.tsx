@@ -41,7 +41,7 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-white font-semibold text-lg tracking-tight">
-                Antimatter<span className="text-violet-400"> AI</span>
+                Nexus<span className="text-violet-400"> AI</span>
               </span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed max-w-[220px]">
@@ -109,7 +109,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-          <p>© {new Date().getFullYear()} Antimatter AI, Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nexus AI, Inc. All rights reserved.</p>
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
             <span>All systems operational</span>
