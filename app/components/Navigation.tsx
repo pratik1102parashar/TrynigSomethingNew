@@ -46,7 +46,7 @@ export default function Navigation() {
             </svg>
           </div>
           <span className="text-white font-semibold text-lg tracking-tight">
-            Antimatter<span className="text-violet-400"> AI</span>
+            Nexus<span className="text-violet-400"> AI</span>
           </span>
         </Link>
 

@@ -36,7 +36,7 @@ const features = [
     ),
     title: "Adaptive Learning",
     description:
-      "Models that continuously improve from your data. The more you use Antimatter AI, the smarter and more tailored it becomes.",
+      "Models that continuously improve from your data. The more you use Nexus AI, the smarter and more tailored it becomes.",
     color: "from-emerald-600 to-teal-700",
     glow: "rgba(16, 185, 129, 0.2)",
   },

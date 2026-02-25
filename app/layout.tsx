@@ -11,12 +11,12 @@ import "@fontsource/inter/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Antimatter AI — Next-Generation AI Platform",
+  title: "Nexus AI — Next-Generation AI Platform",
   description:
-    "Antimatter AI delivers cutting-edge artificial intelligence solutions that transform how businesses operate, create, and grow.",
-  keywords: ["AI", "artificial intelligence", "machine learning", "Antimatter AI"],
+    "Nexus AI delivers cutting-edge artificial intelligence solutions that transform how businesses operate, create, and grow.",
+  keywords: ["AI", "artificial intelligence", "machine learning", "Nexus AI"],
   openGraph: {
-    title: "Antimatter AI — Next-Generation AI Platform",
+    title: "Nexus AI — Next-Generation AI Platform",
     description: "Cutting-edge AI solutions that transform businesses.",
     type: "website",
   },

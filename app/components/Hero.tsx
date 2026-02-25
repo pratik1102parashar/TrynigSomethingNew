@@ -147,7 +147,7 @@ export default function Hero() {
           <motion.div variants={itemVariants}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-950/60 border border-violet-700/40 rounded-full text-violet-300 text-sm font-medium backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-              Introducing Antimatter AI v2.0
+              Introducing Nexus AI v2.0
             </span>
           </motion.div>
 
@@ -166,7 +166,7 @@ export default function Hero() {
             variants={itemVariants}
             className="max-w-2xl text-lg sm:text-xl text-gray-400 leading-relaxed"
           >
-            Antimatter AI gives your team the intelligence layer to build,
+            Nexus AI gives your team the intelligence layer to build,
             deploy, and scale AI-powered products—without the complexity.
           </motion.p>
 
@@ -219,7 +219,7 @@ export default function Hero() {
             </div>
             <p className="text-gray-400 text-sm">
               <span className="text-white font-semibold">5,000+</span> developers
-              already building with Antimatter AI
+              already building with Nexus AI
             </p>
           </motion.div>
         </motion.div>
@@ -241,7 +241,7 @@ export default function Hero() {
               <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
               <div className="w-3 h-3 rounded-full bg-green-500/60" />
               <span className="ml-3 text-xs text-gray-500 font-mono">
-                antimatter-ai — dashboard
+                nexus-ai — dashboard
               </span>
             </div>
 
@@ -264,12 +264,12 @@ export default function Hero() {
 
               <div className="sm:col-span-3 bg-white/[0.02] border border-white/[0.05] rounded-xl p-4 font-mono text-xs text-left overflow-hidden">
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-gray-500">{"// Antimatter AI SDK"}</span>
+                  <span className="text-gray-500">{"// Nexus AI SDK"}</span>
                   <span>
                     <span className="text-violet-400">import</span>
-                    <span className="text-white"> {"{ AntimatterAI }"} </span>
+                    <span className="text-white"> {"{ NexusAI }"} </span>
                     <span className="text-violet-400">from</span>
-                    <span className="text-green-400"> &apos;@antimatter/sdk&apos;</span>
+                    <span className="text-green-400"> &apos;@nexus/sdk&apos;</span>
                   </span>
                   <span className="text-gray-500 mt-1">
                     {"// Initialize in seconds"}
@@ -278,7 +278,7 @@ export default function Hero() {
                     <span className="text-cyan-400">const</span>
                     <span className="text-white"> ai </span>
                     <span className="text-cyan-400">= new</span>
-                    <span className="text-yellow-300"> AntimatterAI</span>
+                    <span className="text-yellow-300"> NexusAI</span>
                     <span className="text-white">{"({ apiKey })"}</span>
                   </span>
                   <span>

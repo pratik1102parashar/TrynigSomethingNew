@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "Antimatter AI cut our ML development cycle from 6 months to 3 weeks. The fine-tuning pipeline is extraordinary—we went from prototype to production without a single DevOps headache.",
+      "Nexus AI cut our ML development cycle from 6 months to 3 weeks. The fine-tuning pipeline is extraordinary—we went from prototype to production without a single DevOps headache.",
     author: "Sarah Chen",
     role: "CTO",
     company: "Nexus Health",
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     quote:
-      "The security posture was a non-negotiable for us. Antimatter AI was the only platform that met our compliance requirements out of the box, and the performance is best-in-class.",
+      "The security posture was a non-negotiable for us. Nexus AI was the only platform that met our compliance requirements out of the box, and the performance is best-in-class.",
     author: "Priya Nair",
     role: "VP Engineering",
     company: "Fortis Cloud",
