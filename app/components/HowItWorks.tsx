@@ -91,6 +91,46 @@ const steps = [
   },
 ];
 
+function StepItem({ step, index }: { step: (typeof steps)[0]; index: number }) {
+  const stepRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(stepRef, { once: true, margin: "-80px" });
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div
+      ref={stepRef}
+      initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`relative flex flex-col sm:flex-row items-start gap-8 ${
+        isEven ? "sm:flex-row" : "sm:flex-row-reverse"
+      }`}
+    >
+      {/* Content side */}
+      <div className="flex-1 sm:max-w-md">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="text-5xl font-bold text-white/[0.06] font-mono tabular-nums">
+            {step.number}
+          </span>
+          <div className="h-px flex-1 bg-white/[0.06]" />
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
+        <p className="text-gray-400 leading-relaxed">{step.description}</p>
+      </div>
+
+      {/* Center dot */}
+      <div className="hidden sm:flex w-12 shrink-0 justify-center pt-6">
+        <div className="w-4 h-4 rounded-full bg-violet-600 border-4 border-[#050510] shadow-[0_0_12px_rgba(124,58,237,0.6)]" />
+      </div>
+
+      {/* Visual side */}
+      <div className="flex-1 sm:max-w-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.07)] rounded-2xl p-5 min-h-[100px] flex items-center">
+        {step.visual}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function HowItWorks() {
   const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
@@ -130,46 +170,9 @@ export default function HowItWorks() {
           <div className="absolute left-8 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-700/0 via-violet-700/40 to-violet-700/0 hidden sm:block" />
 
           <div className="flex flex-col gap-12 sm:gap-16">
-            {steps.map((step, i) => {
-              const stepRef = useRef<HTMLDivElement>(null);
-              const inView = useInView(stepRef, { once: true, margin: "-80px" });
-              const isEven = i % 2 === 0;
-
-              return (
-                <motion.div
-                  key={step.number}
-                  ref={stepRef}
-                  initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className={`relative flex flex-col sm:flex-row items-start gap-8 ${
-                    isEven ? "sm:flex-row" : "sm:flex-row-reverse"
-                  }`}
-                >
-                  {/* Content side */}
-                  <div className="flex-1 sm:max-w-md">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-5xl font-bold text-white/[0.06] font-mono tabular-nums">
-                        {step.number}
-                      </span>
-                      <div className="h-px flex-1 bg-white/[0.06]" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{step.description}</p>
-                  </div>
-
-                  {/* Center dot */}
-                  <div className="hidden sm:flex w-12 shrink-0 justify-center pt-6">
-                    <div className="w-4 h-4 rounded-full bg-violet-600 border-4 border-[#050510] shadow-[0_0_12px_rgba(124,58,237,0.6)]" />
-                  </div>
-
-                  {/* Visual side */}
-                  <div className="flex-1 sm:max-w-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.07)] rounded-2xl p-5 min-h-[100px] flex items-center">
-                    {step.visual}
-                  </div>
-                </motion.div>
-              );
-            })}
+            {steps.map((step, i) => (
+              <StepItem key={step.number} step={step} index={i} />
+            ))}
           </div>
         </div>
       </div>

@@ -33,6 +33,49 @@ const useCases = [
   },
 ];
 
+function UseCaseCard({ useCase, index }: { useCase: (typeof useCases)[0]; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, x: -40 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+      className={`relative flex flex-col sm:flex-row gap-8 rounded-2xl border ${useCase.border} p-8 overflow-hidden bg-gradient-to-br ${useCase.gradient}`}
+    >
+      <div className="flex-1">
+        <span className="text-xs text-gray-500 uppercase tracking-widest font-medium mb-3 block">
+          {useCase.category}
+        </span>
+        <h3 className="text-2xl font-bold text-white mb-3">{useCase.title}</h3>
+        <p className="text-gray-400 leading-relaxed mb-6">{useCase.description}</p>
+        <button className="text-sm text-violet-400 hover:text-violet-300 font-medium flex items-center gap-1.5 transition-colors">
+          Learn more
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex-1 flex items-center">
+        <ul className="grid grid-cols-2 gap-3 w-full">
+          {useCase.items.map((item) => (
+            <li
+              key={item}
+              className="flex items-center gap-2 text-sm text-gray-300"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Product() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -81,49 +124,9 @@ export default function Product() {
 
         {/* Use case cards */}
         <div className="flex flex-col gap-6">
-          {useCases.map((useCase, i) => {
-            const cardRef = useRef<HTMLDivElement>(null);
-            const inView = useInView(cardRef, { once: true, margin: "-60px" });
-
-            return (
-              <motion.div
-                key={useCase.category}
-                ref={cardRef}
-                initial={{ opacity: 0, x: -40 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                className={`relative flex flex-col sm:flex-row gap-8 rounded-2xl border ${useCase.border} p-8 overflow-hidden bg-gradient-to-br ${useCase.gradient}`}
-              >
-                <div className="flex-1">
-                  <span className="text-xs text-gray-500 uppercase tracking-widest font-medium mb-3 block">
-                    {useCase.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mb-3">{useCase.title}</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6">{useCase.description}</p>
-                  <button className="text-sm text-violet-400 hover:text-violet-300 font-medium flex items-center gap-1.5 transition-colors">
-                    Learn more
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-
-                <div className="flex-1 flex items-center">
-                  <ul className="grid grid-cols-2 gap-3 w-full">
-                    {useCase.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-sm text-gray-300"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            );
-          })}
+          {useCases.map((useCase, i) => (
+            <UseCaseCard key={useCase.category} useCase={useCase} index={i} />
+          ))}
         </div>
       </div>
     </section>
